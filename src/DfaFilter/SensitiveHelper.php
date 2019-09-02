@@ -8,6 +8,7 @@
 namespace DfaFilter;
 
 use DfaFilter\Exceptions\PdsBusinessException;
+use DfaFilter\Exceptions\PdsSystemException;
 
 class SensitiveHelper
 {
@@ -59,7 +60,7 @@ class SensitiveHelper
      * @param string $filepath
      *
      * @return $this
-     * @throws \DfaFilter\Exceptions\PdsBusinessException
+     * @throws PdsBusinessException
      */
     public function setTreeByFile($filepath = '')
     {
@@ -84,7 +85,7 @@ class SensitiveHelper
      * @param null $sensitiveWords
      *
      * @return $this
-     * @throws \DfaFilter\Exceptions\PdsBusinessException
+     * @throws PdsBusinessException
      */
     public function setTree($sensitiveWords = null)
     {
@@ -107,7 +108,7 @@ class SensitiveHelper
      * @param int      $matchType  匹配类型 [默认为最小匹配规则]
      * @param int      $wordNum    需要获取的敏感词数量 [默认获取全部]
      * @return array
-     * @throws \DfaFilter\Exceptions\PdsSystemException
+     * @throws PdsSystemException
      */
     public function getBadWord($content, $matchType = 1, $wordNum = 0)
     {
@@ -178,8 +179,8 @@ class SensitiveHelper
      * @param int    $matchType
      *
      * @return mixed
-     * @throws \DfaFilter\Exceptions\PdsBusinessException
-     * @throws \DfaFilter\Exceptions\PdsSystemException
+     * @throws PdsBusinessException
+     * @throws PdsSystemException
      */
     public function replace($content, $replaceChar = '', $repeat = false, $matchType = 1)
     {
@@ -213,8 +214,8 @@ class SensitiveHelper
      * @param int    $matchType
      *
      * @return mixed
-     * @throws \DfaFilter\Exceptions\PdsBusinessException
-     * @throws \DfaFilter\Exceptions\PdsSystemException
+     * @throws PdsBusinessException
+     * @throws PdsSystemException
      */
     public function mark($content, $sTag, $eTag, $matchType = 1)
     {
@@ -242,9 +243,21 @@ class SensitiveHelper
      * @param $content
      *
      * @return bool
-     * @throws \DfaFilter\Exceptions\PdsSystemException
+     * @throws PdsSystemException
      */
     public function islegal($content)
+    {
+        return !$this->isContain($content);
+    }
+
+    /**
+     * 检测内容是否包含敏感词
+     *
+     * @param string $content
+     * @return bool
+     * @throws Exceptions\PdsSystemException
+     */
+    public function isContain($content)
     {
         $this->contentLength = mb_strlen($content, 'utf-8');
 
@@ -283,9 +296,10 @@ class SensitiveHelper
             // 需匹配内容标志位往后移
             $length = $length + $matchFlag - 1;
         }
+
         return false;
     }
-
+    
     protected function yieldToReadFile($filepath)
     {
         $fp = fopen($filepath, 'r');
@@ -337,7 +351,7 @@ class SensitiveHelper
      * @param $char
      *
      * @return string
-     * @throws \DfaFilter\Exceptions\PdsSystemException
+     * @throws PdsSystemException
      */
     protected function dfaBadWordConversChars($word, $char)
     {

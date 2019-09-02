@@ -18,7 +18,7 @@ class BaseTest extends TestCase
         parent::setUp();
 
         // 铭感词文件路径
-        $this->wordPoolPath = 'tests/data/words.txt';
+        $this->wordPoolPath = __DIR__ . '/data/words.txt';
     }
 
     public function testGetBadWord()
@@ -74,5 +74,14 @@ class BaseTest extends TestCase
             ->mark($content,'<mark>', '</mark>');
 
         $this->assertEquals('这是一段测试语句，请忽略<mark>赌球网</mark>', $markedContent);
+    }
+
+    public function testIsContainWord()
+    {
+        $content = '这是一段测试语句，请检测赌球网';
+
+        $this->assertTrue(SensitiveHelper::init()
+            ->setTreeByFile($this->wordPoolPath)
+            ->isContain($content));
     }
 }
