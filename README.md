@@ -1,5 +1,5 @@
 # php-DFA-filterWord
-php实现基于确定有穷自动机算法的铭感词过滤 https://packagist.org/packages/lustre/php-dfa-sensitive
+php实现基于确定有穷自动机算法的铭感词过滤, thanks to https://packagist.org/packages/lustre/php-dfa-sensitive
 
 ##  安装&使用流程
 ### Download and install Composer:
@@ -10,12 +10,7 @@ php实现基于确定有穷自动机算法的铭感词过滤 https://packagist.o
 
 ### 安装扩展 
 
-    composer require lustre/php-dfa-sensitive
-   
-* 注意:如果你在使用composer安装时，出现                    
-  Could not find package lustre/php-dfa-sensitive at any version for your minimum-stability (stable). Check the package spelling or your minimum-stability 请在你的composer.json中加入<code>"minimum-stability": "dev"</code>
-   
-        
+    composer require jimchen/php-dfa-sensitive  
 
    
 #### 如果你需要手动引入
@@ -87,10 +82,3 @@ $ composer update
 ```bash
 $ phpunit tests/BaseTest.php
 ```
-
-目前已知使用平台：[广电云](http://www.guangdianyun.tv/) 节目直播页面在线聊天功能支持
-
-
-*如果大家有更好的建议，请大家多多指正，O(∩_∩)O谢谢*
-
-*你们的star是我的动力*
