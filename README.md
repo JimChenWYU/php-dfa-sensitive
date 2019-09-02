@@ -19,6 +19,17 @@ php实现基于确定有穷自动机算法的铭感词过滤, thanks to https://
     
     use DfaFilter\SensitiveHelper;
 
+### 获取影响因子
+    // 获取影响因子数组
+    $interferenceData = array(
+        '#',
+        '，',
+        '~',
+        '-',
+        '/',
+        ......
+    );
+
 ### 构建敏感词库树
 场景一: 可以拿到不同（用户）词库数组
 
