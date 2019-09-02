@@ -84,4 +84,16 @@ class BaseTest extends TestCase
             ->setTreeByFile($this->wordPoolPath)
             ->isContain($content));
     }
+
+    public function testIsContainWordFilterInterference()
+    {
+        $content = '这是一段测试语句，请检测赌 球-网';
+        $this->assertTrue(SensitiveHelper::init()
+            ->setTreeByFile($this->wordPoolPath)
+            ->setInterference([
+                '-',
+                ' ',
+            ])
+            ->isContain($content));
+    }
 }
