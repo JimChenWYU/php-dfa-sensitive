@@ -1,5 +1,5 @@
 {
-    "name": "lustre/php-dfa-sensitive",
+    "name": "jimchen/php-dfa-sensitive",
     "description": "To achieve the filtering of sensitive words, based on the determination of finite automata (DFA) algorithm.",
     "type": "library",
     "license": "MIT",
@@ -7,11 +7,15 @@
         {
             "name": "Lustre",
             "email": "firelustre@163.com"
+        },
+        {
+            "name": "JimChen",
+            "email": "imjimchen@163.com"
         }
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": ">=5.3"
+        "php": ">=5.5"
     },
     "autoload": {
         "psr-4": {
